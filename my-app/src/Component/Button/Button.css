@@ -1,0 +1,26 @@
+.button {
+    width: 800px;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    align-items: center;
+    background-color: #a3a3a32d;
+    margin: auto;
+    margin-top: 10px;
+    padding-right: 25px;
+}
+  
+.button label {
+    margin-left: 25px;
+}
+  
+.button button {
+    margin-left: 25px;
+    font-size: 18px;
+}
+  
+.button button:hover {
+    background-color: blue;
+    color: white;
+}
