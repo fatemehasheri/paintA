@@ -24,6 +24,8 @@ class Canvas(QLabel):
         qpixmap.fill(background_color)
         self.setPixmap(qpixmap)
         self.pen_color = QColor('#000000')
+
+        #Add two stacks that undo, redo and an array of lines
         self.undoStack = Stack()
         self.redoStack = Stack()
         self.line = []
@@ -68,6 +70,7 @@ class Canvas(QLabel):
         self.undoStack.push(self.line)
         self.line = []
 
+    #By pressing the z control button, the last written letter will be replaced with white color
     def undoFunction(self):
         linePoints = self.undoStack.pop()
         if not linePoints:
@@ -82,6 +85,7 @@ class Canvas(QLabel):
         self.pen_color = QColor('#000000')
         self.redoStack.push(linePoints)
     
+    #By pressing the control button y, the last letter that was written will be added again in black
     def redoFunction(self):
         linePoints = self.redoStack.pop()
         if not linePoints:
@@ -141,6 +145,7 @@ class MainWindow(QtWidgets.QMainWindow):
         sender = self.sender()
         self.canvas.set_pen_color(sender.color)
 
+    #The connection between the keyboard and the execution of undo and redo functions
     def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
         if(event.key() == 90):
             self.canvas.undoFunction()
